@@ -1,21 +1,102 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import HomeScreen from './src/pages/HomeScreen';
+import DetailsScreen from './src/pages/DetailsScreen';
+import ProfileScreen from './src/pages/ProfileScreen';
+import SettingsScreen from './src/pages/SettingsScreen';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function HomeStack() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+	  	<Stack.Navigator
+			initialRouteName="Home"
+			screenOptions={{
+			headerStyle: { backgroundColor: '#42f44b' },
+			headerTintColor: '#fff',
+			headerTitleStyle: { fontWeight: 'bold' }
+		}}>
+			<Stack.Screen
+				name="Home"
+				component={HomeScreen}
+				options={{ title: 'Home Page' }}/>
+			<Stack.Screen
+				name="Details"
+				component={DetailsScreen}
+				options={{ title: 'Details Page' }} />
+	  </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function SettingsStack() {
+	return (
+		<Stack.Navigator
+			initialRouteName="Settings"
+			screenOptions={{
+				headerStyle: { backgroundColor: '#42f44b' },
+				headerTintColor: '#fff',
+				headerTitleStyle: { fontWeight: 'bold' }
+		}}>
+			<Stack.Screen
+				name="Settings"
+				component={SettingsScreen}
+				options={{ title: 'Setting Page' }}/>
+			<Stack.Screen
+				name="Details"
+				component={DetailsScreen}
+				options={{ title: 'Details Page' }}/>
+			<Stack.Screen
+				name="Profile"
+				component={ProfileScreen}
+				options={{ title: 'Profile Page' }}/>
+		</Stack.Navigator>
+	);
+}
+
+function App() {
+  	return (
+		<NavigationContainer>
+			<Tab.Navigator
+				initialRouteName="Feed"
+				tabBarOptions={{
+					activeTintColor: '#42f44b',
+				}}
+			>
+				<Tab.Screen
+				name="HomeStack"
+				component={HomeStack}
+				options={{
+					tabBarLabel: 'Home',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons
+							name="home"
+							color={color}
+							size={size}
+						/>
+					),
+				}}  />
+				<Tab.Screen
+				name="SettingsStack"
+				component={SettingsStack}
+				options={{
+					tabBarLabel: 'Settings',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialCommunityIcons
+							name="settings"
+							color={color}
+							size={size}
+						/>
+					),
+				}} />
+			</Tab.Navigator>
+		</NavigationContainer>
+	);
+}
+export default App;
