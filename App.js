@@ -5,24 +5,29 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import HomeScreen from './src/pages/HomeScreen';
 import DetailsScreen from './src/pages/DetailsScreen';
 import ProfileScreen from './src/pages/ProfileScreen';
 import SettingsScreen from './src/pages/SettingsScreen';
+import SearchScreen from './src/pages/SearchScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const materialTab = createMaterialBottomTabNavigator();
 
 function HomeStack() {
   return (
 	  	<Stack.Navigator
 			initialRouteName="Home"
 			screenOptions={{
-			headerStyle: { backgroundColor: '#42f44b' },
-			headerTintColor: '#fff',
-			headerTitleStyle: { fontWeight: 'bold' }
-		}}>
+				// headerStyle: { backgroundColor: '#009387' },
+				// headerTintColor: '#fff',
+				// headerTitleStyle: { fontWeight: 'bold' },
+				headerShown: false
+			}}
+		>
 			<Stack.Screen
 				name="Home"
 				component={HomeScreen}
@@ -30,9 +35,33 @@ function HomeStack() {
 			<Stack.Screen
 				name="Details"
 				component={DetailsScreen}
-				options={{ title: 'Details Page' }} />
+				options={{ title: 'Details Page' }} 
+			/>
 	  </Stack.Navigator>
   );
+}
+
+function SearchStack() {
+	return (
+			<Stack.Navigator
+				initialRouteName="Search"
+				screenOptions={{
+					// headerStyle: { backgroundColor: '#1f65ff' },
+					// headerTintColor: '#fff',
+					// headerTitleStyle: { fontWeight: 'bold' },
+					headerShown: false
+		  		}}
+		  	>
+			  <Stack.Screen
+				  name="Search"
+				  component={SearchScreen}
+				  options={{ title: 'Search Page' }}/>
+			  <Stack.Screen
+				  name="Details"
+				  component={DetailsScreen}
+				  options={{ title: 'Details Page' }} />
+		</Stack.Navigator>
+	);
 }
 
 function SettingsStack() {
@@ -40,18 +69,14 @@ function SettingsStack() {
 		<Stack.Navigator
 			initialRouteName="Settings"
 			screenOptions={{
-				headerStyle: { backgroundColor: '#42f44b' },
-				headerTintColor: '#fff',
-				headerTitleStyle: { fontWeight: 'bold' }
+				headerTitleStyle: { fontWeight: 'bold'},
+				headerTitleAlign: 'center',
+				headerTransparent: true
 		}}>
 			<Stack.Screen
 				name="Settings"
 				component={SettingsScreen}
-				options={{ title: 'Setting Page' }}/>
-			<Stack.Screen
-				name="Details"
-				component={DetailsScreen}
-				options={{ title: 'Details Page' }}/>
+				options={{ title: 'Settings' }}/>
 			<Stack.Screen
 				name="Profile"
 				component={ProfileScreen}
@@ -63,39 +88,57 @@ function SettingsStack() {
 function App() {
   	return (
 		<NavigationContainer>
-			<Tab.Navigator
-				initialRouteName="Feed"
-				tabBarOptions={{
-					activeTintColor: '#42f44b',
-				}}
+			<materialTab.Navigator 
+				shifting={true}
+				sceneAnimationEnabled={false}
 			>
-				<Tab.Screen
-				name="HomeStack"
-				component={HomeStack}
-				options={{
-					tabBarLabel: 'Home',
-					tabBarIcon: ({ color, size }) => (
-						<MaterialCommunityIcons
-							name="home"
-							color={color}
-							size={size}
-						/>
-					),
-				}}  />
-				<Tab.Screen
-				name="SettingsStack"
-				component={SettingsStack}
-				options={{
-					tabBarLabel: 'Settings',
-					tabBarIcon: ({ color, size }) => (
-						<MaterialCommunityIcons
-							name="settings"
-							color={color}
-							size={size}
-						/>
-					),
-				}} />
-			</Tab.Navigator>
+				<materialTab.Screen
+					name="HomeStack"
+					component={HomeStack}
+					options={{
+						tabBarLabel: 'Home',
+						tabBarColor: '#009387',
+						tabBarIcon: ({ color }) => (
+							<MaterialCommunityIcons
+								name="home"
+								color={color}
+								size={26}
+							/>
+						),
+					}}  
+				/>
+				<materialTab.Screen
+					name="SearchStack"
+					component={SearchStack}
+					options={{
+						tabBarLabel: 'Search',
+						tabBarColor: '#1f65ff',
+						tabBarIcon: ({ color }) => (
+							<MaterialCommunityIcons
+								name="alpha-s-box"
+								color={color}
+								size={26}
+							/>
+						),
+					}}  
+				/>
+				<materialTab.Screen
+					name="SettingsStack"
+					component={SettingsStack}
+					active
+					options={{
+						tabBarLabel: 'Settings',
+						tabBarColor: '#d02860',
+						tabBarIcon: ({ color }) => (
+							<MaterialCommunityIcons
+								name="settings"
+								color={color}
+								size={26}
+							/>
+						),
+					}} 
+				/>
+			</materialTab.Navigator>
 		</NavigationContainer>
 	);
 }

@@ -1,74 +1,65 @@
-import * as React from 'react';
+import React from 'react';
 import {
-  TouchableOpacity,
-  StyleSheet,
-  View,
-  Text,
-  SafeAreaView
+	StyleSheet,
+	View,
+	Text,
+	SafeAreaView,
+	StatusBar,
+	ScrollView,
+	Image
 } from 'react-native';
+import CardView from '../components/CardView';
 
-const HomeScreen = ({ navigation }) => {
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, padding: 16 }}>
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Text
-            style={{
-              fontSize: 25,
-              textAlign: 'center',
-              marginBottom: 16
-            }}>
-            You are on Home Screen
-          </Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={
-              () => navigation.navigate(
-                'SettingsStack', { screen: 'Settings' }
-              )}>
-            <Text>Go to settng Tab</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={
-              () => navigation.navigate('Details')
-            }>
-            <Text>Open Details Screen</Text>
-          </TouchableOpacity>
-        </View>
-        <Text
-          style={{
-            fontSize: 18,
-            textAlign: 'center',
-            color: 'grey'
-          }}>
-          React Native Bottom Navigation
-        </Text>
-        <Text
-          style={{
-            fontSize: 16,
-            textAlign: 'center',
-            color: 'grey'
-          }}>
-          www.aboutreact.com
-        </Text>
-      </View>
-    </SafeAreaView>
-  );
+class HomeScreen extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			navigation: props.navigation,
+			isLoading: true,
+			data: [],
+		}
+	}
+
+	UNSAFE_componentWillMount() {
+		fetch('https://newsapi.org/v2/top-headlines?country=in&sortBy=popularity&pageSize=20&apiKey=961e5e5f44c7416ebb89268c8668e2f8')
+        .then((response) => response.json())
+        .then((responseJson) => {
+			this.setState({ data: responseJson.articles })
+        })
+        .catch((error) => {
+			console.error(error);
+		})
+		.finally(() => {
+			this.setState({ isLoading: false })
+		})
+	}
+
+	render() {
+		return(
+			<SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+				<StatusBar backgroundColor={'transparent'} barStyle={"dark-content"} />
+
+				<ScrollView>
+					<View style={{ marginLeft: 12, marginVertical: 20 }}>
+						<Text style={{ fontWeight: 'bold', fontSize: 30 }}>Breaking News</Text>
+					</View>
+
+					{ this.state.isLoading ? 
+						<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+							<Image source={require('../assets/BeanEater.gif')} /> 
+							<Text style={{ fontWeight: 'bold', fontSize: 30 }}> Fetching . . . .  </Text>
+						</View> : 
+						<CardView data={this.state.data} navigation={this.state.navigation} />
+					}
+
+				</ScrollView>
+			</SafeAreaView>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-    button: {
-		alignItems: 'center',
-		backgroundColor: '#DDDDDD',
-		padding: 10,
-		width: 300,
-		marginTop: 16,
-    },
+
 });
 export default HomeScreen;
