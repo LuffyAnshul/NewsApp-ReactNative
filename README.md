@@ -1,12 +1,17 @@
-# Crypto- Currency App Open Source
+# News App - React Native
 
-## Demo / Preview
+## Demo / Preview Video
+
+[![Youtube Video Demo](/demoImages/youtube.png)](https://www.youtube.com/watch?v=5IBPoM4nkfE)
+
+## Demo Images
 
 <p style="float: left">
     <img src="/demoImages/img1.jpg" width="33%" />
     <img src="/demoImages/img2.jpg" width="33%" />
     <img src="/demoImages/img3.jpg" width="33%" />
 </p>
+<br>
 <p style="float: left">
     <img src="/demoImages/img4.jpg" width="33%" />
     <img src="/demoImages/img5.jpg" width="33%" />
