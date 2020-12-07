@@ -41,8 +41,8 @@ const DetailsScreen = ({ route, navigation }) => {
 
 						<View>
 							<Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 30 }}>{item.title}</Text>
-							<Text style={{ fontSize: 18, paddingVertical: 20 }}>{item.description}</Text>
-							<Text style={{ fontSize: 19, paddingVertical: 20 }}>{item.content}</Text>
+							<Text style={{ fontSize: 16, paddingTop: 30, paddingBottom: 10 }}>{item.description}</Text>
+							<Text style={{ fontSize: 15 }}>{item.content}</Text>
 						</View>
 					</ScrollView>
 				</SafeAreaView>

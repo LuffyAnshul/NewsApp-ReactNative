@@ -60,15 +60,16 @@ class SearchScreen extends React.Component {
 
 		this.setState({ isLoading: true });
 
-		let q = encodeURIComponent(this.state.searchQuery);
+		let q = encodeURIComponent(this.state.searchQuery.toLowerCase());
 
-		let uri = `https://newsapi.org/v2/everything?q=${q}&language=en&sortBy=${sortBy}&pageSize=${itemsFetched}&from=${this.state.fromDate}&to=${this.state.toDate}&apiKey=961e5e5f44c7416ebb89268c8668e2f8`
+		console.log(q);
+
+		let uri = `https://newsapi.org/v2/everything?q=${q}&language=en&sortBy=${sortBy}&pageSize=${itemsFetched}&from=${this.state.fromDate}&to=${this.state.toDate}&apiKey=ba872f0227944000ad56bc2f96855b54`
 
 		fetch(uri)
 			.then((response) => response.json())
 			.then((responseJson) => {
 				this.setState({ data: responseJson.articles, totalResults: responseJson.totalResults })
-				console.log(this.state.data);
 			})
 			.catch((error) => {
 				console.error(error);

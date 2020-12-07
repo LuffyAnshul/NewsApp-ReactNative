@@ -17,7 +17,12 @@ const CardView = ({ data, navigation }) => {
 
 	const ItemView = ({ item }) => {
 		var resTitle = item.title.substring(0, 50) + '. . .';
-		var resDesc = item.description.substring(0, 150) + ' | Read More';
+		var resDesc = '';
+		if (item.description === null) {
+			resDesc = 'null';	
+		} else {
+			resDesc = item.description.substring(0, 150) + ' | Read More';
+		}
 
 		// console.log("CardView")
 		// console.log(navigation);
@@ -30,7 +35,7 @@ const CardView = ({ data, navigation }) => {
 			}}>
 				<View style={styles.mainCard}>
 					<ImageBackground 
-						source={{ uri: item.urlToImage }}
+						source={item.urlToImage ? { uri: item.urlToImage } : null}
 						imageStyle={{ borderRadius: 15 }}
 						style={styles.cardBGImage}
 					>
