@@ -7,15 +7,15 @@
 ## Demo Images
 
 <p style="float: left">
-    <img src="/demoImages/img1.jpg" width="33%" />
-    <img src="/demoImages/img2.jpg" width="33%" />
-    <img src="/demoImages/img3.jpg" width="33%" />
+    <img src="/demoImages/img1.jpg" width="30%" />
+    <img src="/demoImages/img2.jpg" width="30%" />
+    <img src="/demoImages/img3.jpg" width="30%" />
 </p>
 <br>
 <p style="float: left">
-    <img src="/demoImages/img4.jpg" width="33%" />
-    <img src="/demoImages/img5.jpg" width="33%" />
-    <img src="/demoImages/img6.jpg" width="33%" />
+    <img src="/demoImages/img4.jpg" width="30%" />
+    <img src="/demoImages/img5.jpg" width="30%" />
+    <img src="/demoImages/img6.jpg" width="30%" />
 </p>
 
 
