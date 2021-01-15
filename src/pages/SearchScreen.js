@@ -32,7 +32,6 @@ class SearchScreen extends React.Component {
 			fromDate: (new Date).toISOString().substring(0,10),
 			toDate: (new Date).toISOString().substring(0,10),
 			itemsFetched: 20,
-			totalResults: 0,
 		}
 	}
 
@@ -68,7 +67,7 @@ class SearchScreen extends React.Component {
 		fetch(uri)
 			.then((response) => response.json())
 			.then((responseJson) => {
-				this.setState({ data: responseJson.articles, totalResults: responseJson.totalResults })
+				this.setState({ data: responseJson.articles })
 			})
 			.catch((error) => {
 				console.error(error);
