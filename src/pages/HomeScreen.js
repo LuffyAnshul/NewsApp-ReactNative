@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-	StyleSheet,
 	View,
 	Text,
 	SafeAreaView,
@@ -243,8 +242,4 @@ class HomeScreen extends React.Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-
-});
 export default HomeScreen;
