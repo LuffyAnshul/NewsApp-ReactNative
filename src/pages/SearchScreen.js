@@ -4,8 +4,7 @@ import {
 	View,
 	SafeAreaView,
 	StatusBar,
-	Button,
-	Alert
+	Button
 } from 'react-native';
 import { Searchbar, Chip, Subheading } from 'react-native-paper';
 
