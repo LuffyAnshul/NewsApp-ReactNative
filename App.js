@@ -4,7 +4,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import HomeScreen from './src/pages/HomeScreen';
@@ -14,7 +13,6 @@ import SettingsScreen from './src/pages/SettingsScreen';
 import SearchScreen from './src/pages/SearchScreen';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 const materialTab = createMaterialBottomTabNavigator();
 
 function HomeStack() {
